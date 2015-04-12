@@ -6,7 +6,8 @@ module Todo
             public
             def initialize(size)
                 if not size.is_a?(Integer)
-                    raise ArgumentError, "Got #{size.class}, expected an integer."
+                    type = size.class.to_s.downcase
+                    raise ArgumentError, "Got #{type}, expected an integer."
                 end
 
                 @size = size
