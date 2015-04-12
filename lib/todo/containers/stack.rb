@@ -24,6 +24,20 @@ module Todo
 
                 @stack.pop
             end
+
+            def peek
+                return nil if @stack.empty?
+
+                @stack.last
+            end
+
+            def empty?
+                @stack.size == 0
+            end
+
+            def full?
+                ! empty?
+            end
         end
     end
 end

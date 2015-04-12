@@ -36,4 +36,23 @@ RSpec.describe(Todo::Containers::Stack) do
         expect(@sut.pop!).to eq(2)
         expect(@sut.pop!).to eq(1)
     end
+
+    it('returns the top element of the stack') do
+        expect(@sut.peek).to eq(nil)
+
+        @sut.push! 1
+        @sut.push! 2
+
+        expect(@sut.peek).to eq(2)
+    end
+
+    it('checks if the stack is full/empty') do
+        expect(@sut.empty?).to eq(true)
+        expect(@sut.full?).to eq(false)
+
+        [1, 2, 3].each { |value| @sut.push! value }
+
+        expect(@sut.empty?).to eq(false)
+        expect(@sut.full?).to eq(true)
+    end
 end
