@@ -10,7 +10,19 @@ module Todo
                     raise ArgumentError, "Got #{type}, expected an integer."
                 end
 
-                @size = size
+                @size, @stack = size, Array.new
+            end
+
+            def push!(value)
+                raise(NoMemoryError, 'Stack overflow.') if @stack.size == @size
+
+                @stack.push(value)
+            end
+
+            def pop!
+                raise(RuntimeError, 'The stack is empty.') unless @stack.size > 0
+
+                @stack.pop
             end
         end
     end
