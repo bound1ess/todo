@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+thin start --address="localhost" --port="8000" --adapter="file"
