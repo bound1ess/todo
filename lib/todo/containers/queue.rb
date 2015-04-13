@@ -3,6 +3,7 @@ module Todo
         require_relative 'stack'
 
         class Queue < Stack
+            public
             def pop!
                 raise RuntimeError, 'The queue is empty.' if empty?
 
