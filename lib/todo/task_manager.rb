@@ -20,19 +20,52 @@ module Todo
             end
 
             @path = path
+            @default_container = 'queue'
+            @size = 5
         end
 
         def retrieve_tasks
-            # ...
+            create_if_missing
+
+            lines = File.read(@path).lines.map { |line| line.strip }
+
+            if lines.empty? or not ['queue', 'stack'].include?(lines.first)
+                raise RuntimeError, 'Invalid tasks file.'
+            end
+
+            type = lines.shift
+
+            if type == 'queue'
+                container = Todo::Containers::Queue.new(@size)
+            else
+                container = Todo::Containers::Stack.new(@size)
+            end
+
+            lines.each { |task| container.push!(task) }
+
+            container
         end
 
         def save_tasks(container)
-            # ...
+            # Find out the container type.
+            if container.is_a?(Todo::Containers::Stack)
+                type = 'stack'
+            else
+                type = 'queue'
+            end
+
+            # Get all stored tasks.
+            tasks = Array.new
+            tasks.push(container.pop!) unless container.peek.nil?
+
+            File.write(@path, [type].concat(tasks).join($/))
         end
 
         private
         def create_if_missing
-            # ...
+            if not File.exists?(@path)
+                File.write(@path, @default_container)
+            end
         end
     end
 end
