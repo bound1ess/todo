@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require 'thor'
+
+puts 'Hello, world!'
+# vim: syntax=ruby
