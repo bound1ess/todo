@@ -19,11 +19,14 @@ module Todo
 
             def as_queue
                 queue = Todo::Containers::Queue.new(@size)
+                values = Array.new
 
                 loop do
                     break if empty?
-                    queue.push!(pop!)
+                    values.push(pop!)
                 end
+
+                values.reverse.each { |value| queue.push!(value) }
 
                 queue
             end

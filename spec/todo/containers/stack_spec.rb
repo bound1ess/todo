@@ -1,8 +1,14 @@
 require path('containers/stack')
 
 RSpec.describe(Todo::Containers::Stack) do
+
     before(:each) do
         @sut = Todo::Containers::Stack.new(3)
+    end
+
+    it('is a stack') do
+        expect(@sut.is_stack?).to eq(true)
+        expect(@sut.is_queue?).to eq(false)
     end
 
     it('raises an exception if an invalid size was supplied') do
@@ -54,5 +60,17 @@ RSpec.describe(Todo::Containers::Stack) do
 
         expect(@sut.empty?).to eq(false)
         expect(@sut.full?).to eq(true)
+    end
+
+    it('can be converted to a queue') do
+        @sut.push! 1
+        @sut.push! 2
+
+        queue = @sut.as_queue
+
+        expect(queue.is_queue?).to eq(true)
+
+        expect(queue.pop!).to eq(1)
+        expect(queue.pop!).to eq(2)
     end
 end
