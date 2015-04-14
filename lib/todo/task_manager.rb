@@ -62,7 +62,6 @@ module Todo
                 tasks.push(container.pop!)
             end
 
-            puts type
             File.write(@path, [type].concat(tasks).join($/))
         end
 

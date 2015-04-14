@@ -15,6 +15,17 @@ module Todo
 
                 @stack.first
             end
+
+            def as_stack
+                stack = Todo::Containers::Stack.new(@size)
+
+                loop do
+                    break if empty?
+                    stack.push!(pop!)
+                end
+
+                stack
+            end
         end
     end
 end

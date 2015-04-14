@@ -38,6 +38,17 @@ module Todo
             def full?
                 ! empty?
             end
+
+            def as_queue
+                queue = Todo::Containers::Queue.new(@size)
+
+                loop do
+                    break if empty?
+                    queue.push!(pop!)
+                end
+
+                queue
+            end
         end
     end
 end
