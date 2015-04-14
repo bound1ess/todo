@@ -55,9 +55,11 @@ module Todo
             else
                 container = container()
 
-                if type == 'queue' and not container.is_queue?
+                if type == 'queue' and container.is_stack?
+                    # Convert.
                     container = container.as_queue
-                elsif container.is_queue? # Assuming type = "stack".
+                elsif type == 'stack' and container.is_queue?
+                    # Convert.
                     container = container.as_stack
                 else
                     puts "Already using #{type}."
