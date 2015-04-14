@@ -48,16 +48,21 @@ module Todo
 
         def save_tasks(container)
             # Find out the container type.
-            if container.is_a?(Todo::Containers::Stack)
-                type = 'stack'
-            else
+            if container.is_a?(Todo::Containers::Queue)
                 type = 'queue'
+            else
+                type = 'stack'
             end
 
             # Get all stored tasks.
             tasks = Array.new
-            tasks.push(container.pop!) unless container.peek.nil?
 
+            loop do
+                break if container.empty?
+                tasks.push(container.pop!)
+            end
+
+            puts type
             File.write(@path, [type].concat(tasks).join($/))
         end
 
