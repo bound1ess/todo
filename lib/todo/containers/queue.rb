@@ -1,19 +1,20 @@
 module Todo
     module Containers
+        require_relative 'container'
         require_relative 'stack'
 
-        class Queue < Stack
+        class Queue < Container
             public
             def pop!
-                raise RuntimeError, 'The queue is empty.' if empty?
+                raise(RuntimeError, 'The queue is empty.') if empty?
 
-                @stack.shift
+                @values.shift
             end
 
             def peek
                 return nil if empty?
 
-                @stack.first
+                @values.first
             end
 
             def as_stack
@@ -25,6 +26,14 @@ module Todo
                 end
 
                 stack
+            end
+
+            def is_stack?
+                false
+            end
+
+            def is_queue?
+                true
             end
         end
     end

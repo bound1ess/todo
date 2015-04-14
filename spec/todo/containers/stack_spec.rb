@@ -22,7 +22,7 @@ RSpec.describe(Todo::Containers::Stack) do
 
         expect {
             @sut.push! 4
-        }.to raise_error(NoMemoryError, 'Stack overflow.')
+        }.to raise_error(NoMemoryError, 'Overflow.')
     end
 
     it('pops a value from the stack') do
