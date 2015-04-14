@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'thor'
+require_relative '../lib/todo/cli'
 
-puts 'Hello, world!'
+Todo::CLI.start(ARGV)
 # vim: syntax=ruby
