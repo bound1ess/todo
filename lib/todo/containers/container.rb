@@ -23,7 +23,7 @@ module Todo
             end
 
             def full?
-                not empty?
+                @values.size == @size
             end
         end
     end
