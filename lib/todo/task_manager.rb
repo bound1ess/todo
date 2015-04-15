@@ -34,14 +34,16 @@ module Todo
             end
 
             type = lines.shift
+            tasks = lines
 
             if type == 'queue'
                 container = Todo::Containers::Queue.new(@size)
             else
                 container = Todo::Containers::Stack.new(@size)
+                tasks.reverse!
             end
 
-            lines.each { |task| container.push!(task) }
+            tasks.each { |task| container.push!(task) }
 
             container
         end
