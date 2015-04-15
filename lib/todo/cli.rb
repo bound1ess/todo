@@ -12,7 +12,7 @@ module Todo
             if container.empty?
                 puts 'You\'re done!'
             else
-                puts "Your top priority task is to #{container.peek.downcase}."
+                puts "Your top priority task is '#{container.peek}'."
             end
         end
 
@@ -74,7 +74,7 @@ module Todo
 
         private
         def task_manager
-            Todo::TaskManager.new(File.join(Dir.getwd, '.your_tasks'))
+            Todo::TaskManager.new(File.join(ENV['HOME'], '.todo-list'))
         end
 
         def container
