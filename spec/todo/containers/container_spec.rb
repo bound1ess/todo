@@ -18,12 +18,15 @@ RSpec.describe(Todo::Containers::Container) do
 
     it('pushes a value to the container') do
         expect(@sut.size).to eq(3)
+        expect(@sut.real_size).to eq(0)
 
         [1, 2, 3].each { |value| @sut.push! value }
 
         expect {
             @sut.push! 4
         }.to raise_error(NoMemoryError, 'Overflow.')
+
+        expect(@sut.real_size).to eq(3)
     end
 
     it('checks if the container is full/empty') do

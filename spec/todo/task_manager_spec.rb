@@ -24,7 +24,7 @@ RSpec.describe(Todo::TaskManager) do
     it('stores a container in a plaintext file') do
         @sut.save_tasks(Todo::Containers::Stack.new(0))
 
-        expect(File.read(@path)).to eq('stack')
+        expect(File.read(@path)).to eq('stack' + $/)
 
         container = Todo::Containers::Queue.new(2)
         container.push! 'foo'
@@ -32,7 +32,7 @@ RSpec.describe(Todo::TaskManager) do
 
         @sut.save_tasks(container)
 
-        expect(File.read(@path)).to eq(['queue', 'foo', 'bar'].join($/))
+        expect(File.read(@path)).to eq(['queue', 'foo', 'bar'].join($/) + $/)
     end
 
     it('returns all tasks stored in a container') do
