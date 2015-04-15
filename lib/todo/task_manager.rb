@@ -58,7 +58,7 @@ module Todo
                 tasks.push(container.pop!)
             end
 
-            File.write(@path, [type].concat(tasks).join($/))
+            File.write(@path, [type].concat(tasks).join($/) + $/)
         end
 
         def valid_type?(type)
