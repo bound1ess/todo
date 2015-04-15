@@ -24,7 +24,7 @@ module Todo
                 task = container.peek
                 container.pop!
 
-                puts "Marked '#{task}' as completed."
+                puts "Marked '#{task}' as completed. #{container.real_size} remaining."
 
                 task_manager().save_tasks(container)
             else

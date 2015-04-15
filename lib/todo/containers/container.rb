@@ -25,6 +25,10 @@ module Todo
             def full?
                 @values.size == @size
             end
+
+            def real_size
+                @values.size
+            end
         end
     end
 end

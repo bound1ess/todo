@@ -1,5 +1,6 @@
 source('https://rubygems.org')
 
+# The dependencies may seem overly strict.
 group('cli') {
     gem('thor', '~> 0.19.1')
 }
